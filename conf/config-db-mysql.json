@@ -1,0 +1,24 @@
+{
+  "children": {
+    "dbs": {
+      "children": {
+        "mysql": {
+          "title": "My SQL",
+          "description": "My SQL Database",
+          "children": {
+            "v14": {
+              "title": "My SQL 14",
+              "description": "My SQL Database v14",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "mysql-v14"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

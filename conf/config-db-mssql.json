@@ -1,0 +1,24 @@
+{
+  "children": {
+    "dbs": {
+      "children": {
+        "mssql": {
+          "title": "MS SQL",
+          "description": "MS SQL Database",
+          "children": {
+            "v14": {
+              "title": "MS SQL 14",
+              "description": "MS SQL Database v14",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "mssql-v14"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

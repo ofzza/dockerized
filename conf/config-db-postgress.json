@@ -1,0 +1,44 @@
+{
+  "children": {
+    "dbs": {
+      "children": {
+        "postgres": {
+          "title": "Postgres",
+          "description": "Postgres Database",
+          "children": {
+            "v12": {
+              "title": "Postgres 12",
+              "description": "Postgres Database v12",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "postgres-v12"
+                }
+              }
+            },
+            "v13": {
+              "title": "Postgres 13",
+              "description": "Postgres Database v13",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "postgres-v13"
+                }
+              }
+            },
+            "v14": {
+              "title": "Postgres 14",
+              "description": "Postgres Database v14",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "postgres-v14"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
