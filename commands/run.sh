@@ -133,11 +133,11 @@ if [ "$NAV_EXEC" != "null" ]; then
   # If non-interactive, execute valid path command
   if [ ! $COMMAND_INTERACTIVE -eq 1 ]; then
     # Run command
-    . $ROOT/commands/$NAV_EXEC/run.sh $NAV_TITLE $NAV_DESCRIPTION $NAVIGATION_PATH_FRIENDLY $NAV_EXEC_ARGS ${ARGS_UNPROCESSED[*]}
+    . $ROOT/commands/$NAV_EXEC/run.sh ${ARGS_UNPROCESSED[*]}
     exit 0
   else
     # Run dialog
-    . $ROOT/commands/$NAV_EXEC/dialog.sh $NAV_TITLE $NAV_DESCRIPTION $NAVIGATION_PATH_FRIENDLY $NAV_EXEC_ARGS ${ARGS_UNPROCESSED[*]}
+    . $ROOT/commands/$NAV_EXEC/dialog.sh ${ARGS_UNPROCESSED[*]}
     exit 0
   fi
 

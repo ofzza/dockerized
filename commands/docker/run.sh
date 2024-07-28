@@ -16,16 +16,19 @@ trap cleanup EXIT
 # Variables
 IFS=""
 
+# Inherit arguments
+NAV_TITLE=$NAV_TITLE
+NAV_DESCRIPTION=$NAV_DESCRIPTION
+NAVIGATION_PATH_FRIENDLY=$NAVIGATION_PATH_FRIENDLY
+NAV_EXEC_ARGS=$NAV_EXEC_ARGS
+
 # Initialize arguments
 ARGS_PROCESSED=()
 ARGS_UNPROCESSED=(${@:5})
 
 # Preprocess known, static arguments
-NAV_TITLE=$1; shift
-NAV_DESCRIPTION=$2; shift
-NAVIGATION_PATH=$3; shift
-COMMAND_ARGUMENTS_JSON=$4; shift
-DOCKER_IMAGE="docker.image" # TODO: parse from config JSON args!
+DOCKER_IMAGE=$(echo $NAV_EXEC_ARGS | jq -r ".dockerimg")
+DOCKER_ENV=$(echo $NAV_EXEC_ARGS | jq -r '.dockerenv | to_entries | map(("--env " + .key + "=" + .value)) | join(" ")')
 
 # Initialize state
 COMMAND_HELP=0
@@ -98,7 +101,7 @@ done
 if [ "$COMMAND_DOCKER" != "null" ]; then
 
   # Run command
-  . $ROOT/commands/$COMMAND_DOCKER.sh $DOCKER_IMAGE ${ARGS_UNPROCESSED[*]}
+  . $ROOT/commands/run-$COMMAND_DOCKER.sh ${ARGS_UNPROCESSED[*]}
   exit 0
 
 # If no docker command, help needed ...

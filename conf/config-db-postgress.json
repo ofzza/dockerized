@@ -6,33 +6,59 @@
           "title": "Postgres",
           "description": "Postgres Database",
           "children": {
-            "v12": {
-              "title": "Postgres 12",
-              "description": "Postgres Database v12",
-              "exec": {
-                "command": "docker",
-                "args": {
-                  "dockerimg": "postgres-v12"
-                }
-              }
-            },
-            "v13": {
-              "title": "Postgres 13",
-              "description": "Postgres Database v13",
-              "exec": {
-                "command": "docker",
-                "args": {
-                  "dockerimg": "postgres-v13"
-                }
-              }
-            },
             "v14": {
-              "title": "Postgres 14",
-              "description": "Postgres Database v14",
+              "title": "Postgres 14.12",
+              "description": "Postgres Database v14.12",
               "exec": {
                 "command": "docker",
                 "args": {
-                  "dockerimg": "postgres-v14"
+                  "dockerimg": "postgres:14.12",
+                  "dockerenv": {
+                    "POSTGRES_USER": "postgres",
+                    "POSTGRES_PASSWORD": "postgres"
+                  }
+                }
+              }
+            },
+            "v15": {
+              "title": "Postgres 15.7",
+              "description": "Postgres Database v15.7",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "postgres:15.7",
+                  "dockerenv": {
+                    "POSTGRES_USER": "postgres",
+                    "POSTGRES_PASSWORD": "postgres"
+                  }
+                }
+              }
+            },
+            "v16": {
+              "title": "Postgres 16.3",
+              "description": "Postgres Database v16.3",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "postgres:16.3",
+                  "dockerenv": {
+                    "POSTGRES_USER": "postgres",
+                    "POSTGRES_PASSWORD": "postgres"
+                  }
+                }
+              }
+            },
+            "latest": {
+              "title": "Postgres (Latest)",
+              "description": "Postgres Database (Latest)",
+              "exec": {
+                "command": "docker",
+                "args": {
+                  "dockerimg": "postgres:latest",
+                  "dockerenv": {
+                    "POSTGRES_USER": "postgres",
+                    "POSTGRES_PASSWORD": "postgres"
+                  }
                 }
               }
             }
