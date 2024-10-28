@@ -48,7 +48,7 @@ docker image pull $DOCKER_IMAGE > /dev/null 2>&1
 echo "    ... done!"
 # Installing image
 echo "  - Installing image '$DOCKER_IMAGE' ..."
-eval "docker container create $DOCKER_ENV --name $DOCKER_INSTANCE_NAME $DOCKER_IMAGE > /dev/null 2>&1"
+eval "docker container create $DOCKER_ENV --name $DOCKER_INSTANCE_NAME --publish 5432:5432 $DOCKER_IMAGE > /dev/null 2>&1"
 echo "    ... done!"
 
 # Exit cleanly

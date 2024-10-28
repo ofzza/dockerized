@@ -11,6 +11,7 @@ ARGS_UNPROCESSED=(${@:1})
 NAVIGATION_PATH=""
 NAVIGATION_PATH_FRIENDLY=""
 NAVIGATION_PATH_FRIENDLY_BASH=""
+NAVIGATION_PATH_FRIENDLY_FULL=""
 NAVIGATION_PATH_HELP_ARRAY=()
 NAVIGATION_PATH_FULL=""
 NAVIGATION_PATH_ERROR=0
@@ -86,6 +87,7 @@ while [[ $# -gt 0 ]]; do
           TITLE=$(      echoConfiguration | jq -r "$NAVIGATION_PATH.title")
           DESCRIPTION=$(echoConfiguration | jq -r "$NAVIGATION_PATH.description")
           NAVIGATION_PATH_HELP_ARRAY+=("$1 $DESCRIPTION")
+          NAVIGATION_PATH_FRIENDLY_FULL="$NAVIGATION_PATH_FRIENDLY_FULL > $TITLE"
         else
           # Stop appending to path and show help
           NAVIGATION_PATH_ERROR=1
@@ -137,7 +139,7 @@ if [ "$NAV_EXEC" != "null" ]; then
     exit 0
   else
     # Run dialog
-    . $ROOT/commands/$NAV_EXEC/dialog.sh ${ARGS_UNPROCESSED[*]}
+    . $ROOT/commands/$NAV_EXEC/dialog.sh $NAV_TITLE $NAV_DESCRIPTION $NAVIGATION_PATH_FRIENDLY $NAV_EXEC_ARGS ${ARGS_UNPROCESSED[*]}
     exit 0
   fi
 

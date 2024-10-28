@@ -64,7 +64,7 @@ if [ ! ${#NAV_CHILDREN} -eq 0 ]; then
   SELECTED=$(
     dialog  --clear --stdout --keep-tite                \
             --output-fd 1                               \
-            --backtitle "'$NAVIGATION_PATH'"                    \
+            --backtitle "ofzza"                         \
             --ok-label "$LABEL_OK"                      \
             --cancel-label "$LABEL_CANCEL"              \
             --no-tags --menu "$NAV_DESCRIPTION" 10 80 0 \

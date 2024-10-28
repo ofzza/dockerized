@@ -46,6 +46,12 @@ while [[ $# -gt 0 ]]; do
       COMMAND_HELP=1
       ;;
 
+    # Status of docker image/instance
+    --status)
+      ARG_EVALUATED=1
+      COMMAND_DOCKER="status"
+      ;;
+
     # Install docker image
     --install)
       ARG_EVALUATED=1
@@ -109,6 +115,9 @@ else
   COMMAND_HELP=1
 fi
 
+# Preprocess known, static arguments
+DOCKER_INSTANCE_NAME=$(echo "ofzza::dockerized::$DOCKER_IMAGE" | sed -e 's/[^A-Za-z0-9_\-]/\-/g' )
+
 # If help, output help
 if [ $COMMAND_HELP -eq 1 ]; then
   # Help header
@@ -118,11 +127,16 @@ if [ $COMMAND_HELP -eq 1 ]; then
   echo "  . run.sh $NAVIGATION_PATH_FRIENDLY [Command]" #TODO: Format!
   echo
   echo "Commands:"
-  echo "  --install:              Installs $NAV_TITLE server ($DOCKER_IMAGE)"
-  echo "  --uninstall:            Uninstalls $NAV_TITLE server ($DOCKER_IMAGE)"
-  echo "  --start:                Starts $NAV_TITLE instance ($DOCKER_IMAGE)"
-  echo "  --stop:                 Stops $NAV_TITLE instance ($DOCKER_IMAGE)"
-  echo "  --connect:              Connects to $NAV_TITLE instance ($DOCKER_IMAGE)"
+  echo "  --status:               Outputs status of $NAV_TITLE image/container ($DOCKER_IMAGE / $DOCKER_INSTANCE_NAME)"
+  echo "  --install:              Installs $NAV_TITLE image ($DOCKER_IMAGE)"
+  echo "  --uninstall:            Uninstalls $NAV_TITLE image ($DOCKER_IMAGE)"
+  echo "  --start:                Starts $NAV_TITLE container ($DOCKER_INSTANCE_NAME)"
+  echo "  --stop:                 Stops $NAV_TITLE container ($DOCKER_INSTANCE_NAME)"
+  echo "  --connect:              Connects to $NAV_TITLE container ($DOCKER_INSTANCE_NAME)"
+
+  # Output docker image/container status
+  echo;
+  . $ROOT/commands/run-status.sh ${ARGS_UNPROCESSED[*]}
 
   # Exit after help output
   exit 0
